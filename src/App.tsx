@@ -54,27 +54,32 @@ function App() {
   return (
     <main className="app-shell">
       <section className="welcome">
-        <p className="eyebrow">blank_canvas</p>
-        <h1>Fresh slate.</h1>
-        <div className="users-list">
-          {users.map((user) => (
-            <div
-              key={user.id}
-              style={{
-                marginBottom: "1rem",
-                padding: "1rem",
-                border: "1px solid #ccc",
-                borderRadius: "4px",
-                backgroundColor: user.read === "true" ? "lightgrey" : "white",
-              }}
-            >
-              <h3>{user.from}</h3>
-              <p>
-                <strong>{user.subject}</strong>
-              </p>
-              <p>{user.message}</p>
-            </div>
-          ))}
+        <div className="users-pane">
+          <p className="eyebrow">blank_canvas</p>
+          <h1>Fresh slate.</h1>
+          <div className="users-list">
+            {users.map((user) => (
+              <div
+                key={user.id}
+                style={{
+                  marginBottom: "1rem",
+                  padding: "1rem",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  backgroundColor: user.read === "true" ? "lightgrey" : "white",
+                }}
+              >
+                <h3>{user.from}</h3>
+                <p>
+                  <strong>{user.subject}</strong>
+                </p>
+                <p>{user.message}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mail-section">
+          
         </div>
       </section>
     </main>

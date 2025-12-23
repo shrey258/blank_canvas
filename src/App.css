@@ -7,10 +7,22 @@
 }
 
 .welcome {
-  width: min(480px, 100%);
+  width: 100%;
+  max-width: 1200;
+  display: flex;
+  flex-direction: row;
+  gap: 2;
+}
+
+.users-pane {
+  width: 25%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.mail-section {
+  width: 75%;
 }
 
 .eyebrow {
