@@ -2,11 +2,17 @@ import { api } from './client'
 
 export type User = {
   id: string
-  name: string
+  from: string,
+  address : string,
+  time: string,
+  message: string,
+  subject: string,
+  tag: string,
+  read : string
 }
 
 export function getUsers(): Promise<User[]> {
-  return api<User[]>('/users')
+  return api<User[]>('/')
 }
 
 export function createUser(name: string): Promise<User> {
