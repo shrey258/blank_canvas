@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 import localUsers from "./local.json";
@@ -50,6 +51,9 @@ type User = {
 
 function App() {
   const users: User[] = localUsers;
+  const [selectedEmailId, setSelectedEmailId] = useState<string | null>(null);
+
+  const selectedEmail = users.find((user) => user.id === selectedEmailId);
 
   return (
     <main className="app-shell">
@@ -61,10 +65,13 @@ function App() {
             {users.map((user) => (
               <div
                 key={user.id}
+                onClick={() => setSelectedEmailId(user.id)}
                 style={{
                   marginBottom: "1rem",
                   padding: "1rem",
-                  border: "1px solid #ccc",
+                  border: `1px solid ${
+                    selectedEmailId === user.id ? "blue" : "#ccc"
+                  }`,
                   borderRadius: "4px",
                   backgroundColor: user.read === "true" ? "lightgrey" : "white",
                 }}
@@ -79,7 +86,46 @@ function App() {
           </div>
         </div>
         <div className="mail-section">
-          
+          {selectedEmail ? (
+            <div
+              style={{
+                padding: 20,
+                backgroundColor: "white",
+                borderRadius: 8,
+                height: "100%",
+              }}
+            >
+              <header
+                style={{
+                  borderBottom: "1px solid #eee",
+                  paddingBottom: 16,
+                  marginBottom: 32,
+                }}
+              >
+                <h2 style={{ marginBottom: 8 }}>{selectedEmail.subject}</h2>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    color: "#666",
+                  }}
+                >
+                  <div>
+                    <span style={{ fontWeight: "bold", marginRight: 8 }}>
+                      {selectedEmail.from}
+                    </span>
+                    <span>{selectedEmail.address}</span>
+                  </div>
+                  <span>{selectedEmail.time}</span>
+                </div>
+              </header>
+              <div>
+                <p>{selectedEmail.message}</p>
+              </div>
+            </div>
+          ) : (
+            <p>Select an email to read</p>
+          )}
         </div>
       </section>
     </main>
